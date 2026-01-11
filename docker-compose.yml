@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  tor-notion:
+    build: .
+    ports:
+      - "5800:5800" # HTTPS noVNC
+    environment:
+      - VNC_PASSWORD=my-strong-vnc-pass
+      - WEB_AUTHENTICATION=1
+      - WEB_AUTHENTICATION_USERNAME=admin
+      - WEB_AUTHENTICATION_PASSWORD=notion-safe-pass
+      - STORAGE_PASSWORD=super-secret-disk-key
+      - USER_ID=1000
+      - GROUP_ID=1000
+    volumes:
+      - ./notion_data:/config
+    # Required for gocryptfs/FUSE
+    privileged: true
+    devices:
+      - /dev/fuse:/dev/fuse
+    cap_add:
+      - SYS_ADMIN
+    restart: unless-stopped

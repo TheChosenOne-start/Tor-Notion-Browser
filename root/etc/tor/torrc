@@ -1,0 +1,5 @@
+SocksPort 9050
+ControlPort 9051
+CookieAuthentication 1
+DataDirectory /config/tor-data
+Log notice stdout
