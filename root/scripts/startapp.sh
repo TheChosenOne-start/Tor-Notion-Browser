@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv sh
+#!/bin/sh
 set -e
 
 echo "[INFO] Starting Tor Browser..."
