@@ -5,6 +5,9 @@
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-linux%2Famd64-lightgrey)](https://hub.docker.com/)
 
+![Landing Preview](assets/landing-page-tor-notion-browser.gif)
+
+
 A hardened, privacy-focused Docker container that runs Tor Browser with encrypted local storage, accessible through a secure web interface. Designed for accessing Notion (or any web application) with enhanced anonymity and data protection.
 
 This project combines the anonymity of the Tor network with encrypted-at-rest storage using gocryptfs, all accessible through a browser-based VNC interface. Your browsing data, cookies, and local files are automatically encrypted and persist across container restarts.
