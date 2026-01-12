@@ -24,34 +24,34 @@ This project combines the anonymity of the Tor network with encrypted-at-rest st
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                        Docker Container                          │
+│                        Docker Container                         │
 │  ┌───────────────────────────────────────────────────────────┐  │
-│  │                    jlesage/baseimage-gui                   │  │
-│  │  ┌─────────────┐  ┌─────────────┐  ┌─────────────────┐   │  │
-│  │  │   nginx     │  │    Xvnc     │  │    openbox      │   │  │
-│  │  │  (noVNC)    │  │  (Display)  │  │ (Window Mgr)    │   │  │
-│  │  │  :5800      │  │             │  │                 │   │  │
-│  │  └──────┬──────┘  └──────┬──────┘  └────────┬────────┘   │  │
+│  │              jlesage/baseimage-gui (Based)                │  │
+│  │  ┌─────────────┐  ┌─────────────┐  ┌─────────────────┐    │  │
+│  │  │   nginx     │  │    Xvnc     │  │    openbox      │    │  │
+│  │  │  (noVNC)    │  │  (Display)  │  │ (Window Mgr)    │    │  │
+│  │  │  :5800      │  │             │  │                 │    │  │
+│  │  └──────┬──────┘  └──────┬──────┘  └────────┬────────┘    │  │
 │  │         │                │                  │             │  │
 │  │         └────────────────┼──────────────────┘             │  │
 │  │                          │                                │  │
-│  │  ┌───────────────────────▼───────────────────────────┐   │  │
-│  │  │              Tor Browser (Firefox)                 │   │  │
-│  │  │         Profile: /config/data/browser-profile      │   │  │
-│  │  └───────────────────────┬───────────────────────────┘   │  │
+│  │  ┌───────────────────────▼───────────────────────────┐    │  │
+│  │  │              Tor Browser (Firefox)                │    │  │
+│  │  │         Profile: /config/data/browser-profile     │    │  │
+│  │  └───────────────────────┬───────────────────────────┘    │  │
 │  │                          │                                │  │
-│  │  ┌───────────────────────▼───────────────────────────┐   │  │
-│  │  │           System Tor Daemon                        │   │  │
-│  │  │     SOCKS: 127.0.0.1:9050  Control: :9051         │   │  │
-│  │  └───────────────────────┬───────────────────────────┘   │  │
+│  │  ┌───────────────────────▼───────────────────────────┐    │  │
+│  │  │           System Tor Daemon                       │    │  │
+│  │  │     SOCKS: 127.0.0.1:9050  Control: :9051         │    │  │
+│  │  └───────────────────────┬───────────────────────────┘    │  │
 │  └──────────────────────────┼────────────────────────────────┘  │
-│                             │                                    │
+│                             │                                   │
 │  ┌──────────────────────────▼────────────────────────────────┐  │
-│  │                 gocryptfs (Encrypted Volume)               │  │
+│  │                 gocryptfs (Encrypted Volume)              │  │
 │  │   Cipher: /config/cipher  ──►  Mount: /config/data        │  │
 │  └───────────────────────────────────────────────────────────┘  │
-│                             │                                    │
-└─────────────────────────────┼────────────────────────────────────┘
+│                             │                                   │
+└─────────────────────────────┼───────────────────────────────────┘
                               │
                     ┌─────────▼─────────┐
                     │   Host Volume     │
@@ -145,7 +145,7 @@ User Browser ──HTTPS:5800──► nginx/noVNC ──► Xvnc ──► Tor 
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/tor-notion-browser.git
+   git clone https://github.com/TheChosenOne-start/tor-notion-browser.git
    cd tor-notion-browser
    ```
 
@@ -179,6 +179,7 @@ User Browser ──HTTPS:5800──► nginx/noVNC ──► Xvnc ──► Tor 
 2. Accept the self-signed SSL certificate
 3. Enter web authentication credentials (if enabled)
 4. You'll see the Tor Browser with Notion.so loaded
+   (But honestly you can search whatever you want)
 
 ### Keyboard Shortcuts (noVNC)
 
@@ -193,6 +194,9 @@ Edit `root/scripts/startapp.sh` and change the URL:
 ```bash
 exec ./start-tor-browser --profile "/config/data/browser-profile" "https://your-url.com"
 ```
+
+NOTE: Can I prevent a company from associating or labeling AI-generated data with my personal identity?
+      YES, this is the solution...
 
 Rebuild the container after changes:
 ```bash
@@ -269,6 +273,7 @@ docker exec tor-notion-browser-tor-notion-1 ps aux
 - **Data Encryption**: Local storage encrypted with gocryptfs
 - **Access Control**: Multi-layer authentication (web + VNC)
 - **Verified Downloads**: Tor Browser GPG signature verification
+- **Host Isolation**: If FUSE is been used - Container runs privileged
 
 ### What This Project Does NOT Provide
 
@@ -386,7 +391,7 @@ Contributions are welcome! Please follow these guidelines:
 
 ```bash
 # Clone your fork
-git clone https://github.com/yourusername/tor-notion-browser.git
+git clone https://github.com/TheChosenOne-start/tor-notion-browser.git
 cd tor-notion-browser
 
 # Build and test locally
@@ -407,12 +412,12 @@ docker compose build && docker compose up -d
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+My project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
 
 - [Tor Project](https://www.torproject.org/) - Tor Browser and network
-- [jlesage/docker-baseimage-gui](https://github.com/jlesage/docker-baseimage-gui) - Base image
+- [jlesage/docker-baseimage-gui](https://github.com/jlesage/docker-baseimage-gui) - Base image (extremely customized tho)
 - [DomiStyle/docker-tor-browser](https://github.com/DomiStyle/docker-tor-browser) - Inspiration and icon
 - [rfjakob/gocryptfs](https://github.com/rfjakob/gocryptfs) - Encrypted filesystem
 
