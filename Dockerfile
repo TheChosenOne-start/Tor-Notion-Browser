@@ -70,8 +70,11 @@ COPY root/scripts/startapp.sh /startapp.sh
 COPY root/scripts/entrypoint-wrapper.sh /etc/cont-init.d/03-encryption-setup.sh
 COPY root/scripts/start-tor.sh /etc/cont-init.d/04-start-tor.sh
 
+# s6 service for Tor daemon (supervised, auto-restart)
+COPY root/etc/services.d/tor /etc/services.d/tor
+
 # Permissions
-RUN chmod +x /startapp.sh /etc/cont-init.d/03-encryption-setup.sh /etc/cont-init.d/04-start-tor.sh && \
+RUN chmod +x /startapp.sh /etc/cont-init.d/03-encryption-setup.sh /etc/cont-init.d/04-start-tor.sh /etc/services.d/tor/run && \
     chown -R 1000:1000 /opt/tor-browser
 
 VOLUME ["/config"]

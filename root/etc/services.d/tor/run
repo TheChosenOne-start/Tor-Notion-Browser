@@ -3,10 +3,10 @@ set -e
 
 # Ensure data directory exists with correct permissions
 mkdir -p /config/tor-data
-chown -R app:app /config/tor-data
+chown -R 1000:1000 /config/tor-data
 chmod 700 /config/tor-data
 
 echo "[tor] Starting Tor daemon..."
 
-# Run Tor as the app user (Tor refuses to run as root)
-exec su-exec app /usr/sbin/tor -f /etc/tor/torrc
+# Run Tor as UID 1000 (app user) - Tor refuses to run as root
+exec su-exec 1000 /usr/sbin/tor -f /etc/tor/torrc
