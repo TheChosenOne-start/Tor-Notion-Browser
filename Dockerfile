@@ -67,10 +67,11 @@ COPY --from=builder /opt/noVNC/index.html /opt/noVNC/index.html
 # YOUR CUSTOM CONFIGS
 COPY root/etc/tor/torrc /etc/tor/torrc
 COPY root/scripts/startapp.sh /startapp.sh
-COPY root/scripts/entrypoint-wrapper.sh /etc/cont-init.d/00-encryption-setup.sh
+COPY root/scripts/entrypoint-wrapper.sh /etc/cont-init.d/03-encryption-setup.sh
+COPY root/scripts/start-tor.sh /etc/cont-init.d/04-start-tor.sh
 
 # Permissions
-RUN chmod +x /startapp.sh /etc/cont-init.d/00-encryption-setup.sh && \
+RUN chmod +x /startapp.sh /etc/cont-init.d/03-encryption-setup.sh /etc/cont-init.d/04-start-tor.sh && \
     chown -R 1000:1000 /opt/tor-browser
 
 VOLUME ["/config"]
