@@ -6,6 +6,7 @@
 [![Platform](https://img.shields.io/badge/Platform-linux%2Famd64-lightgrey)](https://hub.docker.com/)
 
 ![Landing Preview](assets/landing-page-tor-notion-browser.gif)
+![C](claude-fu-transparent.gif)
 
 
 A hardened, privacy-focused Docker container that runs Tor Browser with encrypted local storage, accessible through a secure web interface. Designed for accessing Notion (or any web application) with enhanced anonymity and data protection.
